@@ -1,6 +1,8 @@
 import requests as req
 import cfscrape
 from colorama import Fore, Back, Style, init
+import os
+import pickle
 
 def files(setting, filen):
 	file = open(os.getcwd() + "/data/" + filen, "wb")

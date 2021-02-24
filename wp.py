@@ -84,7 +84,7 @@ def download_story(story_id, type_save):
     elif type_save == "txt":
         txt_create.m(book)
     else:
-        aa = 0
+        pass
     
 
 
@@ -105,17 +105,3 @@ def get_story_id(url):
     story_url = chapterinfo_req.json()['url']
     story_id = re.search(r'\d+', story_url).group()
     return story_id
-
-
-def main():    
-    story_urls = sys.argv[2:]
-    for story_url in story_urls:
-        story_id = get_story_id(story_url)
-        if story_id:
-            download_story(story_id, sys.argv[1])
-        else:
-            p_red('ERROR: could not retrieve story', story_url)
-
-
-if __name__ == '__main__':
-    main()
