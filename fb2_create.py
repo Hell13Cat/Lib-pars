@@ -50,16 +50,19 @@ def base64_get(url):
 def chapter_gen(text):
     image = ""
     soup = BeautifulSoup(text, 'html5lib')
-    tags = soup.find_all('img', src=True)
+    tags = soup.find_all('p')
     if len(tags) != 0:
-        for span in soup.select('img'):
-            img_tag_url = str(span["src"])
-            img_name = (img_tag_url.split("/"))[-1] + ".jpg"
-            meta = soup.new_tag('image')
-            meta.attrs['l:href'] = "#" + img_name
-            span.insert_after(meta)
-            span.unwrap() 
-            image += templ_bin().format(name=img_name, base=base64_get(img_tag_url))
+        for span in soup.select('p'):
+            print(span)
+            if '''data-media-type="image"''' in span:
+                print(span)
+                img_tag_url = str(span["src"])
+                img_name = (img_tag_url.split("/"))[-1] + ".jpg"
+                meta = soup.new_tag('image')
+                meta.attrs['l:href'] = "#" + img_name
+                span.insert_after(meta)
+                span.unwrap() 
+                image += templ_bin().format(name=img_name, base=base64_get(img_tag_url))
     return {"image":image, "text":str(soup).replace("<html><head></head><body>", "").replace("</body></html>", "")}
 
 
@@ -70,7 +73,7 @@ def m(book):
     try:
         os.mkdir(root_dir + "/downloads")
     except:
-        aa = 0
+        pass
     chapters = book["characters"]
     binary = ""
     chapters_text = ""
@@ -83,7 +86,7 @@ def m(book):
          binary += capt["image"]
     p_green('[{c_all}/{c_all}] Meta and information generation'.format(c_all=str(len(chapters) + 1)))
     ready_book = templ().format(link=book["source"], namebook=book["title"], annotation=book["description"], nickname=str(book["authors"]), characters=chapters_text, binarys=binary, cover=base64_get(book["cover"]))
-    file = open(root_dir + "/downloads/" + str(book["id"]) + " - " + save_file.rename_valid_f(book["title"]) + ".fb2", "w")
+    file = open(root_dir + "/downloads/" + str(book["id"]) + " - " + save_file.rename_valid_f(book["title"]) + ".fb2", "w", encoding="utf-8")
     file.write(ready_book)
     file.close()
     p_green("[I] Saved to fb2")
