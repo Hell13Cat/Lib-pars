@@ -11,7 +11,7 @@ def templ_char():
 
 
 def templ_bin():
-    return '''<binary id="{name}" content-type="image/jpeg">{base}</binary>'''
+    return '''<binary id="{name}" content-type="image/jpeg">\n{base}\n</binary>'''
 
 
 def templ():
@@ -53,15 +53,15 @@ def chapter_gen(text):
     tags = soup.find_all('p')
     if len(tags) != 0:
         for span in soup.select('p'):
-            print(span)
-            if '''data-media-type="image"''' in span:
-                print(span)
-                img_tag_url = str(span["src"])
+            if '''data-media-type="image"''' in str(span):
+                soupb = BeautifulSoup(text, 'html5lib')
+                spanb = soupb.find("img")
+                img_tag_url = str(spanb["src"])
                 img_name = (img_tag_url.split("/"))[-1] + ".jpg"
                 meta = soup.new_tag('image')
                 meta.attrs['l:href'] = "#" + img_name
                 span.insert_after(meta)
-                span.unwrap() 
+                span.unwrap()
                 image += templ_bin().format(name=img_name, base=base64_get(img_tag_url))
     return {"image":image, "text":str(soup).replace("<html><head></head><body>", "").replace("</body></html>", "")}
 
