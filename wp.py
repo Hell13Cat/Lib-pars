@@ -7,7 +7,7 @@ import re
 import requests
 import dateutil.parser
 import smartypants
-import save_file, fb2_create, txt_create, ex
+import save_file, epub_create, fb2_create, txt_create, ex
 from ex import p_red, p_green, p_blue
 
 session = requests.session()
@@ -79,6 +79,8 @@ def download_story(story_id, type_save):
         section["id"] = chapter_id
         characters.append(section)
     book["characters"] = characters
+    if type_save == "epub": 
+        epub_create.m(book)
     if type_save == "fb2": 
         fb2_create.m(book)
     elif type_save == "txt":
