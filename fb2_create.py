@@ -3,7 +3,7 @@ import os
 from bs4 import BeautifulSoup
 import requests
 import save_file
-from ex import p_red, p_green, p_blue
+from ex import p_red, p_green, p_blue, name_gen
 
 def templ_char():
     return '''<title><p>{title}</p></title>
@@ -57,11 +57,7 @@ def chapter_gen(text):
                 soupb = BeautifulSoup(str(span), 'html5lib')
                 spanb = soupb.find("img")
                 img_tag_url = str(spanb["src"])
-                img_name_pars = img_tag_url.split("/")
-                del img_name_pars[0]
-                del img_name_pars[0]
-                del img_name_pars[0]
-                img_name = "".join(img_name_pars) + ".jpg"
+                img_name = name_gen() + ".jpg"
                 meta = soup.new_tag('image')
                 meta.attrs['l:href'] = "#" + img_name
                 span.insert_after(meta)

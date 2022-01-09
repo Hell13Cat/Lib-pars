@@ -1,3 +1,4 @@
+import random
 import requests as req
 import cfscrape
 from colorama import Fore, Back, Style, init
@@ -52,4 +53,11 @@ def p_green(text):
 def p_blue(text): 
     init(autoreset=True)
     print(Back.BLUE + text)
+
+def name_gen():
+    list_sym = list("qwertyuiopasdfghjklzxcvbnm1234567890")
+    text = ""
+    for ii in range(15):
+        text += random.choice(list_sym)
+    return text
 
