@@ -3,6 +3,7 @@ from PIL import Image, ImageTk
 import webbrowser
 import gen_data
 gen_data.gen_parsers()
+gen_data.clear_cache()
 import gate_pars
 
 def open_github():

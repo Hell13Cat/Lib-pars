@@ -132,3 +132,4 @@ dmypy.json
 *.fb2
 
 test.py
+cache/

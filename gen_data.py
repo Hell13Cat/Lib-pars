@@ -1,4 +1,13 @@
 import os
+import shutil
+
+def clear_cache():
+    clear_folder = os.getcwd() + "/cache"
+    try:
+        shutil.rmtree(clear_folder)
+    except:
+        pass
+    os.mkdir(clear_folder)
 
 def gen_parsers():
     import_ex = "import {} as {}\n"
