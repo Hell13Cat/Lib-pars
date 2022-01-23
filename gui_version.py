@@ -1,4 +1,5 @@
 import tkinter
+from tkinter.ttk import Combobox
 from PIL import Image, ImageTk
 import webbrowser
 import gen_data
@@ -23,8 +24,6 @@ main_window = tkinter.Frame(root)
 main_window.grid()
 
 #label = tkinter.Label(main_window, text="Book parser").grid(row=1,column=1)
-global url_input
-global text_info
 url_input = tkinter.Entry(main_window, width=50)
 url_input.grid(row=1, column=1)
 button_go = tkinter.Button(main_window, text="GO", command=go_url)
@@ -32,6 +31,10 @@ button_go.grid(row=1, column=2)
 text_info = tkinter.Label(main_window, text="  ", font=("Arial Bold", 12))
 text_info.grid(row=2,column=1)
 button_update = tkinter.Button(main_window, text="GitHub", command=open_github).grid(row=1, column=3)
+formats = Combobox(main_window, width=10)  
+formats['values'] = ("fb2", "epub", "txt")  
+formats.current(0)  # установите вариант по умолчанию  
+formats.grid(row=1, column=4)  
 
 
 #canvas = tkinter.Canvas(root, height=400, width=700)
