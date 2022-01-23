@@ -1,4 +1,4 @@
-import parsers.wattpad_com as wattpad_com
+import wattpad_com as wattpad_com
 print("Universal parser for eBooks")
 
 url = input("URL> ")

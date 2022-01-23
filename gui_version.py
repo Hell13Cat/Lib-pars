@@ -2,6 +2,8 @@ import tkinter
 from PIL import Image, ImageTk
 import webbrowser
 import gen_data
+gen_data.gen_parsers()
+import gate_pars
 
 def open_github():
     url = "https://github.com/Hell13Cat/book-parsers"
@@ -10,6 +12,7 @@ def open_github():
 def go_url():
     url = url_input.get()
     text_info.configure(text="Подождите...")
+    gate_pars.main(url)
 
 root = tkinter.Tk()
 root.resizable(width=False, height=False)
