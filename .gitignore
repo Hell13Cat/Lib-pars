@@ -131,5 +131,7 @@ dmypy.json
 *.epub
 *.fb2
 
-test.py
+/test.py
+/test2.py
+/test.png
 cache/
