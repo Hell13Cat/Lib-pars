@@ -10,9 +10,9 @@ def main(url):
     domain = url_to_domain(url)
     if domain == "0":
         return {"code":0, "desce":"Test - ok"}
-    elif url in test.conf()["url_list"]:
+    elif domain in test.conf()["url_list"]:
         return test.main(url)
-    elif url in wattpad_com.conf()["url_list"]:
+    elif domain in wattpad_com.conf()["url_list"]:
         return wattpad_com.main(url)
     else:
         return {"code":0, "desce":"Site not support"}

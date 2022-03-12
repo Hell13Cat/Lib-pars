@@ -11,7 +11,7 @@ def clear_cache():
 
 def gen_parsers():
     import_ex = "import {} as {}\n"
-    elif_ex = """    elif url in {}.conf()["url_list"]:\n        return {}.main(url)\n"""
+    elif_ex = """    elif domain in {}.conf()["url_list"]:\n        return {}.main(url)\n"""
     elif_exs = """    elif site == {}.conf()["name"]:\n        return {}.search(query)\n"""
     elif_exn = """    dict_site.append("{}")\n"""
     parsers_folder = os.getcwd() + "/parsers"
