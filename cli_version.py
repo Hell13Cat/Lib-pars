@@ -1,1 +1,2 @@
-import gate_main()
+import gate_main
+

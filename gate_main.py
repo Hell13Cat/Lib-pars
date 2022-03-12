@@ -4,6 +4,9 @@ gen_data.gen_parsers()
 gen_data.clear_cache()
 import gate_pars
 
+def update():
+    pass
+
 def go_git():
     url = "https://github.com/Hell13Cat/book-parsers"
     webbrowser.open(url, new=2, autoraise=True)
