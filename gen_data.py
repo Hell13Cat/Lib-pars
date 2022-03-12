@@ -12,6 +12,7 @@ def clear_cache():
 def gen_parsers():
     import_ex = "import {} as {}\n"
     elif_ex = """    elif domain in {}.conf()["url_list"]:\n        return {}.main(url)\n"""
+    elif_exd = """    elif domain in {}.conf()["url_list"]:\n        return {}.down_book(url)\n"""
     elif_exs = """    elif site == {}.conf()["name"]:\n        return {}.search(query)\n"""
     elif_exn = """    dict_site.append("{}")\n"""
     parsers_folder = os.getcwd() + "/parsers"
@@ -27,6 +28,10 @@ def gen_parsers():
     text_ready += """def main(url):\n    domain = url_to_domain(url)\n    if domain == "0":\n        return {"code":0, "desce":"Test - ok"}\n"""
     for one_pars in list_file_ready:
         text_ready += elif_ex.format(one_pars, one_pars)
+    text_ready += """    else:\n        return {"code":0, "desce":"Site not support"}"""
+    text_ready += """\ndef down_book(url):\n    domain = url_to_domain(url)\n    if domain == "0":\n        return {"code":0, "desce":"Test - ok"}\n"""
+    for one_pars in list_file_ready:
+        text_ready += elif_exd.format(one_pars, one_pars)
     text_ready += """    else:\n        return {"code":0, "desce":"Site not support"}"""
     text_ready += """\ndef search(query, site):\n    if query == "0":\n        return {"code":0, "desce":"Test - ok"}\n"""
     for one_pars in list_file_ready:
