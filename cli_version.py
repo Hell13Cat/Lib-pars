@@ -27,8 +27,24 @@ while True:
             print("[*]", ii)
         aaa = input("...")
     elif inpu == "3":
-        print("[i] Coming soon...")
-        aaa = input("...")
+        url = input("url: ")
+        datas = gate_main.get_info_book(url)
+        cls()
+        if datas["code"] == 1:
+            print(">>>",datas["name"],"<<<\n->",datas["status"], "-",str(datas["chapters"]),"\n",datas["desc"])
+            cyclic_i = 1
+            print("[0] - Exit\n[1] - Download")
+            while cyclic_i == 1:
+                inpu = input(": ")
+                if inpu == "0":
+                    cyclic_i = 0
+                if inpu == "1":
+                    cyclic_i = 0
+                    down_data = gate_main.down(datas["url"])
+            aaa = input("...")
+        else:
+            print("[e]", datas["desce"])
+            aaa = input("...")
     elif inpu == "4":
         gate_main.go_git()
     else:

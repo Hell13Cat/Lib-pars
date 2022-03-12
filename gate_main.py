@@ -14,6 +14,9 @@ def go_git():
 def get_info_book(url):
     return gate_pars.main(url)
 
+def down(url):
+    return gate_pars.down_book(url)
+
 def search_books(query, site):
     return gate_pars.search(query, site)
 
