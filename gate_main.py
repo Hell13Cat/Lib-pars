@@ -16,3 +16,6 @@ def get_info_book(url):
 
 def search_books(query, site):
     return gate_pars.search(query, site)
+
+def list():
+    return gate_pars.name_list()
